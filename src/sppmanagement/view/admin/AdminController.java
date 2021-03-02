@@ -187,7 +187,7 @@ public class AdminController {
 
         pembayaran.save();
 
-        this.resetEntri(view);
+//        this.resetEntri(view);
         this.loadTabelPembayaran(view);
         this.populateTabelSiswa(view);
     }

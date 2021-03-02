@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT p.id_pembayaran, pt.nama_petugas, sw.nisn, sw.nama, k.nama_kelas, p.tgl_bayar, p.bulan_dibayar, p.tahun_dibayar, s.tahun, s.nominal, p.jumlah_bayar FROM `pembayaran` as p INNER JOIN petugas as pt ON p.id_petugas = pt.id_petugas INNER JOIN siswa as sw ON p.nisn = sw.nisn INNER JOIN kelas as k ON sw.id_kelas = k.id_kelas INNER JOIN spp as s ON p.id_spp = s.id_spp ORDER BY p.tgl_bayar DESC]]>
+		<![CDATA[SELECT p.id_pembayaran, pt.nama_petugas, sw.nisn, sw.nama, k.nama_kelas, p.tgl_bayar, p.bulan_dibayar, p.tahun_dibayar, s.tahun, s.nominal, p.jumlah_bayar FROM `pembayaran` as p INNER JOIN petugas as pt ON p.id_petugas = pt.id_petugas INNER JOIN siswa as sw ON p.nisn = sw.nisn INNER JOIN kelas as k ON sw.id_kelas = k.id_kelas INNER JOIN spp as s ON p.id_spp = s.id_spp ORDER BY p.tgl_bayar DESC, p.id_pembayaran DESC]]>
 	</queryString>
 	<field name="id_pembayaran" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -55,7 +55,7 @@
 					<textElement>
 						<font size="18" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{tgl_bayar})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID")).format($F{tgl_bayar})]]></textFieldExpression>
 				</textField>
 				<line>
 					<reportElement uuid="1a0183c9-5ca0-41a3-afe0-2a4373847719" x="-20" y="32" width="595" height="1" forecolor="#666666"/>
@@ -187,7 +187,7 @@
 				<textElement textAlignment="Center">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tahun} ]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tahun}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="6e3993c1-26e7-4da9-bc55-bd21304065d6" x="95" y="0" width="82" height="20"/>

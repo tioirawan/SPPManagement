@@ -126,6 +126,6 @@ public class Siswa implements Model {
     }
 
     public ArrayList<Pembayaran> getPembayaran() {
-        return new PembayaranDAO().where("nisn = " + nisn, "tgl_bayar DESC", Pembayaran.class);
+        return new PembayaranDAO().where("nisn = " + nisn, "tgl_bayar DESC, id_pembayaran DESC", Pembayaran.class);
     }
 }

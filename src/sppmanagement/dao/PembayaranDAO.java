@@ -62,7 +62,7 @@ public class PembayaranDAO extends DAO {
     }
 
     public ArrayList<Pembayaran> all() {
-        return super.all(Pembayaran.class, "tgl_bayar DESC");
+        return super.all(Pembayaran.class, "tgl_bayar DESC, id_pembayaran DESC");
     }
 
 }
