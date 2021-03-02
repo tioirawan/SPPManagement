@@ -48,6 +48,7 @@ public class MainView extends javax.swing.JFrame {
         tableSiswa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistem Pembayaran SPP");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,11 +96,11 @@ public class MainView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Tanggal Bayar", "Petugas", "Jumlah Bayar"
+                "Tanggal Bayar", "Bulan Dibayar", "Tahun Dibayar", "Petugas", "Jumlah Bayar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

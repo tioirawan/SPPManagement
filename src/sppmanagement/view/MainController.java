@@ -84,8 +84,10 @@ public class MainController {
             DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 
             row[0] = pembayaran.getTglBayar();
-            row[1] = pembayaran.getPetugas().getNama();
-            row[2] = pembayaran.getJumlahBayar();
+            row[1] = pembayaran.getBulanBayar();
+            row[2] = pembayaran.getTahunBayar();
+            row[3] = pembayaran.getPetugas().getNama();
+            row[4] = pembayaran.getJumlahBayar();
 
             tableModel.addRow(row);
         });

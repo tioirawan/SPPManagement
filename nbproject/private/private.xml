@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/AdminController.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/AdminView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/SPPManagement.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/db/Auth.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/db/DB.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/dao/DAO.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/MainView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/model/Pembayaran.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDPetugas/CRUDPetugasView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/MainController.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/dao/KelasDAO.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDPetugas/CRUDPetugasController.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/Login/LoginController.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/model/Siswa.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/Login/LoginView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDKelas/CRUDKelasController.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDSPP/CRUDSPPView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDSiswa/CRUDSiswaController.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDSiswa/CRUDSiswaView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/view/admin/CRUDKelas/CRUDKelasView.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/helper/Helper.java</file>
+            <file>file:/C:/Users/ASTANEW2/Documents/NetBeansProjects/SPPManagement/src/sppmanagement/dao/PembayaranDAO.java</file>
+        </group>
+    </open-files>
+</project-private>

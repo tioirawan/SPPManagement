@@ -8,11 +8,18 @@ package sppmanagement.view.admin;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import sppmanagement.dao.PembayaranDAO;
 import sppmanagement.dao.SiswaDAO;
 import sppmanagement.db.Auth;
+import sppmanagement.db.DB;
 import sppmanagement.helper.Helper;
 import sppmanagement.model.Pembayaran;
 import sppmanagement.model.Petugas;
@@ -35,6 +42,7 @@ public class AdminController {
     void setupVisibility(AdminView view) {
         if (user.getLevel().equals("petugas")) {
             view.panelKelolaData.setVisible(false);
+            view.btnGenerateLaporan.setVisible(false);
         }
 
         view.labelJudul.setText(user.getNama() + "@" + user.getLevel());
@@ -62,6 +70,7 @@ public class AdminController {
         this.populateTabelSiswa(view);
 
         view.labelNameNISNEntri.setText(selectedSiswa.getNama() + " - " + selectedSiswa.getNisn());
+        view.dateTanggalBayar.setDate(new Date());
         view.textJumlahBayar.setText(selectedSiswa.getSPP().getNominal() + "");
 
         view.mainTabPane.setSelectedIndex(2);
@@ -232,6 +241,7 @@ public class AdminController {
         this.populateTabelSiswa(view);
 
         view.labelNameNISNEntri.setText(selectedSiswa.getNama() + " - " + selectedSiswa.getNisn());
+        view.dateTanggalBayar.setDate(new Date());
         view.textJumlahBayar.setText(selectedSiswa.getSPP().getNominal() + "");
 
         view.mainTabPane.setSelectedIndex(2);
@@ -240,5 +250,14 @@ public class AdminController {
     void refresh(AdminView view) {
         this.loadTabelPembayaran(view);
         this.loadTabelSiswa(view);
+    }
+
+    void generateLaporan(AdminView aThis) {
+        try {
+            JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("laporanPembayaran.jasper"), null, DB.connection());
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
