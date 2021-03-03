@@ -90,7 +90,7 @@ public class AdminController {
         listPembayaranSiswa.forEach((pembayaran) -> {
             Object[] row = new Object[6];
 
-            row[0] = pembayaran.getIdPembayaran();
+            row[0] = String.format("%06d", pembayaran.getIdPembayaran());
             row[1] = pembayaran.getPetugas().getNama();
             row[2] = pembayaran.getTglBayar();
             row[3] = pembayaran.getBulanBayar();
@@ -111,13 +111,13 @@ public class AdminController {
         listPembayaranSiswa.forEach((pembayaran) -> {
             Object[] row = new Object[8];
 
-            row[0] = pembayaran.getIdPembayaran();
+            row[0] = String.format("%06d", pembayaran.getIdPembayaran());
             row[1] = pembayaran.getPetugas().getNama();
             row[2] = pembayaran.getSiswa().getNama();
             row[3] = pembayaran.getTglBayar();
             row[4] = pembayaran.getBulanBayar();
             row[5] = pembayaran.getTahunBayar();
-            row[6] = pembayaran.getSPP().toString();
+            row[6] = pembayaran.getSPP().getTahun();
             row[7] = pembayaran.getJumlahBayar();
 
             tableModel.addRow(row);
@@ -211,7 +211,7 @@ public class AdminController {
 
             SPP spp = siswa.getSPP();
 
-            row[6] = spp.getTahun() + " - " + spp.getNominal();
+            row[6] = spp.getTahun();
 
             tableModel.addRow(row);
         });

@@ -56,7 +56,7 @@ public class CRUDSPPController {
         }
 
         spp.setNominal(Integer.parseInt(view.getTextNominal().getText()));
-        spp.setTahun(Integer.parseInt(view.getTextTahun().getText()));
+        spp.setTahun(view.getTextTahun().getText());
 
         spp.save();
 

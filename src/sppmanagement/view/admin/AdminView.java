@@ -351,7 +351,7 @@ public class AdminView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Petugas", "Siswa", "Tanggal Bayar", "Bulan Dibayar", "Tahun Dibayar", "SPP", "Jumlah Bayar"
+                "ID", "Petugas", "Siswa", "Tanggal Bayar", "Bulan", "Tahun", "SPP", "Nominal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -431,9 +431,9 @@ public class AdminView extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Tanggal Bayar");
+        jLabel6.setText("Bulan Bayar");
 
-        jLabel8.setText("Tanggal Bayar");
+        jLabel8.setText("Tahun");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -506,7 +506,7 @@ public class AdminView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Petugas", "Tanggal Bayar", "Bulan Dibayar", "Tahun Dibayar", "Jumlah Bayar"
+                "ID", "Petugas", "Tanggal Bayar", "Bulan", "Tahun", "Nominal"
             }
         ) {
             boolean[] canEdit = new boolean [] {

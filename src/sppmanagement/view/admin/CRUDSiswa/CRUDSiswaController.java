@@ -45,7 +45,7 @@ public class CRUDSiswaController {
         listSPP = sppDao.all();
 
         listTextSPP = listSPP.stream().map((SPP spp) -> {
-            return spp.getTahun() + " - " + spp.getNominal();
+            return spp.getTahun();
         }).toArray(String[]::new);
 
         listNamaKelas = listKelas.stream().map((Kelas kelas) -> {

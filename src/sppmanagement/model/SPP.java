@@ -18,7 +18,7 @@ import sppmanagement.dao.SiswaDAO;
 public class SPP implements Model {
 
     private int idSpp;
-    private int tahun;
+    private String tahun;
     private int nominal;
 
     public int getIdSpp() {
@@ -29,11 +29,11 @@ public class SPP implements Model {
         this.idSpp = idSpp;
     }
 
-    public int getTahun() {
+    public String getTahun() {
         return tahun;
     }
 
-    public void setTahun(int tahun) {
+    public void setTahun(String tahun) {
         this.tahun = tahun;
     }
 
@@ -70,7 +70,7 @@ public class SPP implements Model {
     @Override
     public void fillFromResultSet(ResultSet result) throws SQLException {
         setIdSpp(result.getInt("id_spp"));
-        setTahun(result.getInt("tahun"));
+        setTahun(result.getString("tahun"));
         setNominal(result.getInt("nominal"));
     }
 
