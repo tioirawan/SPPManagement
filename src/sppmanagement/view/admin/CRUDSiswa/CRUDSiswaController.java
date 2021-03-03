@@ -194,7 +194,7 @@ public class CRUDSiswaController {
         
         SPP sppSiswa = siswa.getSPP();
         
-        view.getSelectSPP().setSelectedItem(sppSiswa.getTahun() + " - " + sppSiswa.getNominal());
+        view.getSelectSPP().setSelectedItem(sppSiswa.getTahun());
 
         view.getTextNISN().setEnabled(false);
         isEdit = true;
