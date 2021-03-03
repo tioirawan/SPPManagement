@@ -51,7 +51,7 @@ public class SPPDao extends DAO {
     }
 
     public ArrayList<SPP> all() {
-        return super.all(SPP.class);
+        return super.all(SPP.class, "id_spp DESC");
     }
 
 }

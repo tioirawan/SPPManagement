@@ -8,15 +8,21 @@ package sppmanagement.view.admin;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import sppmanagement.dao.PembayaranDAO;
+import sppmanagement.dao.SPPDao;
 import sppmanagement.dao.SiswaDAO;
 import sppmanagement.db.Auth;
 import sppmanagement.db.DB;
@@ -36,6 +42,11 @@ public class AdminController {
 
     SiswaDAO siswaDao = new SiswaDAO();
     PembayaranDAO pembayaranDao = new PembayaranDAO();
+    SPPDao sppDao = new SPPDao();
+
+    ArrayList<SPP> listSPP = new ArrayList<>();
+
+    String[] listTextSPP = new String[0];
 
     Siswa selectedSiswa = null;
 
@@ -172,6 +183,12 @@ public class AdminController {
             if (response != JOptionPane.YES_OPTION) {
                 return;
             }
+        } else {
+            int response = JOptionPane.showConfirmDialog(null, "Pembayaran yang sudah tercatat tidak dapat diubah maupun dihapus, pastikan semua data transaksi pembayaran sudah benar, jika sudah yakin maka tekan \"Yes\".", "Konfirmasi Entri?", JOptionPane.WARNING_MESSAGE);
+
+            if (response != JOptionPane.YES_OPTION) {
+                return;
+            }
         }
 
         // everyting is clear
@@ -250,14 +267,37 @@ public class AdminController {
     void refresh(AdminView view) {
         this.loadTabelPembayaran(view);
         this.loadTabelSiswa(view);
+
+        this.setupDropdown(view);
     }
 
-    void generateLaporan(AdminView aThis) {
+    void setupDropdown(AdminView view) {
+        listSPP = sppDao.all();
+
+        listTextSPP = listSPP.stream().map((SPP spp) -> {
+            return spp.getTahun();
+        }).toArray(String[]::new);
+
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(listTextSPP);
+
+        view.selectGenereateTahunSPP.setModel(model);
+    }
+
+    void generateLaporan(AdminView view) {
         try {
-            JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("laporanPembayaran.jasper"), null, DB.connection());
+            Map<String, Object> params = new HashMap();
+
+            params.put("tahun_spp", view.selectGenereateTahunSPP.getSelectedItem());
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("laporanPembayaran.jrxml"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jasperReport, params, DB.connection());
+
+//                        JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("laporanPembayaran.jrxml"), params, DB.connection());
             JasperViewer.viewReport(jp, false);
         } catch (JRException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

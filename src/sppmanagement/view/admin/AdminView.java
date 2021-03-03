@@ -40,6 +40,7 @@ public class AdminView extends javax.swing.JFrame {
         tableSiswa.setAutoCreateRowSorter(true);
 
         controller.setupVisibility(this);
+        controller.setupDropdown(this);
         controller.loadTabelPembayaran(this);
         controller.loadTabelSiswa(this);
         
@@ -59,12 +60,14 @@ public class AdminView extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
         panelKelolaData = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         buttonOpenCRUDPetugas = new javax.swing.JButton();
         buttonOpenCRUDKelas = new javax.swing.JButton();
         buttonOpenCRUDSPP = new javax.swing.JButton();
         buttonOpenCRUDSiswa = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        selectGenereateTahunSPP = new javax.swing.JComboBox<>();
+        btnGenerateLaporan = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         textSearchSiswaNISN = new javax.swing.JTextField();
         btnSearchSiswa = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -81,8 +84,6 @@ public class AdminView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         labelUserSPP = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        btnRefresh = new javax.swing.JButton();
-        btnGenerateLaporan = new javax.swing.JButton();
         mainTabPane = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelPembayaran = new javax.swing.JTable();
@@ -90,6 +91,8 @@ public class AdminView extends javax.swing.JFrame {
         tableSiswa = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableHistoryPembayaranSiswa = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -104,8 +107,6 @@ public class AdminView extends javax.swing.JFrame {
         bulanBayar = new com.toedter.calendar.JMonthChooser();
         jLabel8 = new javax.swing.JLabel();
         tahunBayar = new com.toedter.calendar.JYearChooser();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tableHistoryPembayaranSiswa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pembayaran SPP");
@@ -115,15 +116,18 @@ public class AdminView extends javax.swing.JFrame {
 
         labelJudul.setBackground(new java.awt.Color(153, 204, 255));
         labelJudul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelJudul.setForeground(new java.awt.Color(0, 153, 255));
+        labelJudul.setForeground(new java.awt.Color(0, 102, 204));
         labelJudul.setText("Admin Pembayaran SPP");
 
+        panelKelolaData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Kelola Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         panelKelolaData.setForeground(new java.awt.Color(255, 255, 0));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Kelola Data");
+        panelKelolaData.setMinimumSize(new java.awt.Dimension(280, 0));
+        panelKelolaData.setPreferredSize(new java.awt.Dimension(280, 134));
 
         buttonOpenCRUDPetugas.setText("Petugas");
+        buttonOpenCRUDPetugas.setMaximumSize(new java.awt.Dimension(80, 20));
+        buttonOpenCRUDPetugas.setMinimumSize(new java.awt.Dimension(120, 25));
+        buttonOpenCRUDPetugas.setPreferredSize(new java.awt.Dimension(120, 25));
         buttonOpenCRUDPetugas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOpenCRUDPetugasActionPerformed(evt);
@@ -131,6 +135,9 @@ public class AdminView extends javax.swing.JFrame {
         });
 
         buttonOpenCRUDKelas.setText("Kelas");
+        buttonOpenCRUDKelas.setMaximumSize(new java.awt.Dimension(80, 20));
+        buttonOpenCRUDKelas.setMinimumSize(new java.awt.Dimension(120, 25));
+        buttonOpenCRUDKelas.setPreferredSize(new java.awt.Dimension(120, 25));
         buttonOpenCRUDKelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOpenCRUDKelasActionPerformed(evt);
@@ -138,6 +145,9 @@ public class AdminView extends javax.swing.JFrame {
         });
 
         buttonOpenCRUDSPP.setText("SPP");
+        buttonOpenCRUDSPP.setMaximumSize(new java.awt.Dimension(80, 20));
+        buttonOpenCRUDSPP.setMinimumSize(new java.awt.Dimension(120, 25));
+        buttonOpenCRUDSPP.setPreferredSize(new java.awt.Dimension(120, 25));
         buttonOpenCRUDSPP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOpenCRUDSPPActionPerformed(evt);
@@ -145,9 +155,26 @@ public class AdminView extends javax.swing.JFrame {
         });
 
         buttonOpenCRUDSiswa.setText("Siswa");
+        buttonOpenCRUDSiswa.setMaximumSize(new java.awt.Dimension(80, 20));
+        buttonOpenCRUDSiswa.setMinimumSize(new java.awt.Dimension(120, 25));
+        buttonOpenCRUDSiswa.setPreferredSize(new java.awt.Dimension(120, 25));
         buttonOpenCRUDSiswa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOpenCRUDSiswaActionPerformed(evt);
+            }
+        });
+
+        selectGenereateTahunSPP.setMinimumSize(new java.awt.Dimension(120, 25));
+        selectGenereateTahunSPP.setPreferredSize(new java.awt.Dimension(120, 25));
+
+        btnGenerateLaporan.setBackground(new java.awt.Color(0, 153, 153));
+        btnGenerateLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerateLaporan.setText("Generate Laporan");
+        btnGenerateLaporan.setMinimumSize(new java.awt.Dimension(120, 25));
+        btnGenerateLaporan.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnGenerateLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateLaporanActionPerformed(evt);
             }
         });
 
@@ -156,38 +183,46 @@ public class AdminView extends javax.swing.JFrame {
         panelKelolaDataLayout.setHorizontalGroup(
             panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelKelolaDataLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                .addGap(179, 179, 179))
-            .addGroup(panelKelolaDataLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonOpenCRUDSPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonOpenCRUDPetugas, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonOpenCRUDSiswa, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(buttonOpenCRUDKelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonOpenCRUDPetugas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonOpenCRUDSPP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectGenereateTahunSPP, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnGenerateLaporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonOpenCRUDKelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonOpenCRUDSiswa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8))
         );
         panelKelolaDataLayout.setVerticalGroup(
             panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelKelolaDataLayout.createSequentialGroup()
+            .addGroup(panelKelolaDataLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonOpenCRUDPetugas)
-                    .addComponent(buttonOpenCRUDSiswa))
+                    .addComponent(buttonOpenCRUDPetugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonOpenCRUDSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonOpenCRUDSPP)
-                    .addComponent(buttonOpenCRUDKelas))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonOpenCRUDSPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonOpenCRUDKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelKelolaDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGenerateLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectGenereateTahunSPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Cari Siswa");
+        btnRefresh.setBackground(new java.awt.Color(0, 204, 153));
+        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
+        btnRefresh.setText("R");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cari Siswa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         btnSearchSiswa.setText("Cari Siswa");
         btnSearchSiswa.addActionListener(new java.awt.event.ActionListener() {
@@ -233,113 +268,109 @@ public class AdminView extends javax.swing.JFrame {
 
         jLabel22.setText("NISN");
 
-        btnRefresh.setBackground(new java.awt.Color(0, 204, 153));
-        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
-        btnGenerateLaporan.setBackground(new java.awt.Color(0, 204, 153));
-        btnGenerateLaporan.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerateLaporan.setText("Generate Laporan");
-        btnGenerateLaporan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerateLaporanActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 267, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel22)
+                                .addComponent(btnSearchSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel19)
+                                        .addComponent(jLabel20)
+                                        .addComponent(jLabel21))
+                                    .addGap(57, 57, 57)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelUserNIS)
+                                        .addComponent(labelUserKelas)
+                                        .addComponent(labelUserAlamat)
+                                        .addComponent(labelUserTelepone)
+                                        .addComponent(labelUserSPP)))
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel13)
+                                .addComponent(textSearchSiswaNISN, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(labelUserNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelUserNISN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel22)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(textSearchSiswaNISN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(8, 8, 8)
+                    .addComponent(btnSearchSiswa)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel9)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(labelUserNama, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(labelUserNISN)
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(labelUserNIS))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel18)
+                        .addComponent(labelUserKelas))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(labelUserAlamat))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel20)
+                        .addComponent(labelUserTelepone))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(labelUserSPP))
+                    .addContainerGap()))
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelKelolaData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel7)
-                                    .addComponent(btnSearchSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(btnRefresh)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGenerateLaporan))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel18)
-                                            .addComponent(jLabel19)
-                                            .addComponent(jLabel20)
-                                            .addComponent(jLabel21))
-                                        .addGap(57, 57, 57)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelUserNIS)
-                                            .addComponent(labelUserKelas)
-                                            .addComponent(labelUserAlamat)
-                                            .addComponent(labelUserTelepone)
-                                            .addComponent(labelUserSPP)))
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel13)
-                                    .addComponent(textSearchSiswaNISN)
-                                    .addComponent(labelUserNama, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                                    .addComponent(labelUserNISN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(panelKelolaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(labelJudul)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRefresh)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(labelJudul)
-                .addGap(18, 18, 18)
-                .addComponent(panelKelolaData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefresh)
-                    .addComponent(btnGenerateLaporan))
-                .addGap(13, 13, 13)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textSearchSiswaNISN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(btnSearchSiswa)
+                    .addComponent(labelJudul))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelUserNama, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelUserNISN)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(labelUserNIS))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(labelUserKelas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(labelUserAlamat))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(labelUserTelepone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(labelUserSPP))
-                .addGap(183, 183, 183))
+                .addComponent(panelKelolaData, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel4);
@@ -394,6 +425,28 @@ public class AdminView extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tableSiswa);
 
         mainTabPane.addTab("Daftar Siswa", jScrollPane3);
+
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(600, 402));
+
+        tableHistoryPembayaranSiswa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Petugas", "Tanggal Bayar", "Bulan", "Tahun", "Nominal"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tableHistoryPembayaranSiswa);
+
+        jSplitPane2.setLeftComponent(jScrollPane4);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(200, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 595));
@@ -461,7 +514,7 @@ public class AdminView extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8))
-                        .addGap(0, 56, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(tahunBayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -494,38 +547,16 @@ public class AdminView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddEntry)
                     .addComponent(btnResetEntri))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel2);
-
-        jScrollPane4.setPreferredSize(new java.awt.Dimension(600, 402));
-
-        tableHistoryPembayaranSiswa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Petugas", "Tanggal Bayar", "Bulan", "Tahun", "Nominal"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(tableHistoryPembayaranSiswa);
-
-        jSplitPane2.setLeftComponent(jScrollPane4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
+            .addComponent(jSplitPane2)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,35 +571,15 @@ public class AdminView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonOpenCRUDPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDPetugasActionPerformed
-        new CRUDPetugasView().setVisible(true);
-    }//GEN-LAST:event_buttonOpenCRUDPetugasActionPerformed
-
-    private void buttonOpenCRUDKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDKelasActionPerformed
-        new CRUDKelasView().setVisible(true);
-    }//GEN-LAST:event_buttonOpenCRUDKelasActionPerformed
-
-    private void buttonOpenCRUDSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDSiswaActionPerformed
-        new CRUDSiswaView().setVisible(true);
-    }//GEN-LAST:event_buttonOpenCRUDSiswaActionPerformed
-
-    private void buttonOpenCRUDSPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDSPPActionPerformed
-        new CRUDSPPView().setVisible(true);
-    }//GEN-LAST:event_buttonOpenCRUDSPPActionPerformed
-
-    private void btnSearchSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSiswaActionPerformed
-        controller.searchUser(this);
-    }//GEN-LAST:event_btnSearchSiswaActionPerformed
 
     private void textJumlahBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textJumlahBayarActionPerformed
         // TODO add your handling code here:
@@ -590,9 +601,29 @@ public class AdminView extends javax.swing.JFrame {
         controller.refresh(this);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnSearchSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSiswaActionPerformed
+        controller.searchUser(this);
+    }//GEN-LAST:event_btnSearchSiswaActionPerformed
+
     private void btnGenerateLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateLaporanActionPerformed
         controller.generateLaporan(this);
     }//GEN-LAST:event_btnGenerateLaporanActionPerformed
+
+    private void buttonOpenCRUDSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDSiswaActionPerformed
+        new CRUDSiswaView().setVisible(true);
+    }//GEN-LAST:event_buttonOpenCRUDSiswaActionPerformed
+
+    private void buttonOpenCRUDSPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDSPPActionPerformed
+        new CRUDSPPView().setVisible(true);
+    }//GEN-LAST:event_buttonOpenCRUDSPPActionPerformed
+
+    private void buttonOpenCRUDKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDKelasActionPerformed
+        new CRUDKelasView().setVisible(true);
+    }//GEN-LAST:event_buttonOpenCRUDKelasActionPerformed
+
+    private void buttonOpenCRUDPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenCRUDPetugasActionPerformed
+        new CRUDPetugasView().setVisible(true);
+    }//GEN-LAST:event_buttonOpenCRUDPetugasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEntry;
@@ -611,18 +642,17 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -640,6 +670,7 @@ public class AdminView extends javax.swing.JFrame {
     public javax.swing.JLabel labelUserTelepone;
     public javax.swing.JTabbedPane mainTabPane;
     public javax.swing.JPanel panelKelolaData;
+    public javax.swing.JComboBox<String> selectGenereateTahunSPP;
     public javax.swing.JTable tabelPembayaran;
     public javax.swing.JTable tableHistoryPembayaranSiswa;
     public javax.swing.JTable tableSiswa;
