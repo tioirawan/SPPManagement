@@ -16,7 +16,6 @@ import sppmanagement.dao.SiswaDAO;
  * @author ASTANEW2
  */
 public class SPP implements Model {
-
     private int idSpp;
     private String tahun;
     private int nominal;

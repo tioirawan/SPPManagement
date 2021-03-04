@@ -73,16 +73,16 @@ public class AdminController {
         view.labelUserNISN.setText(selectedSiswa.getNisn());
         view.labelUserNIS.setText(selectedSiswa.getNis());
         view.labelUserNama.setText(selectedSiswa.getNama());
-        view.labelUserKelas.setText(selectedSiswa.getKelas().getNamaKelas());
+        view.labelUserKelas.setText(selectedSiswa.getKelas() != null ? selectedSiswa.getKelas().getNamaKelas() : "-");
         view.labelUserAlamat.setText(selectedSiswa.getAlamat());
         view.labelUserTelepone.setText(selectedSiswa.getNoTelp());
-        view.labelUserSPP.setText(selectedSiswa.getSPP().getNominal() + "");
+        view.labelUserSPP.setText(selectedSiswa.getSPP() != null ? selectedSiswa.getSPP().getNominal() + "" : "-");
 
         this.populateTabelSiswa(view);
 
         view.labelNameNISNEntri.setText(selectedSiswa.getNama() + " - " + selectedSiswa.getNisn());
         view.dateTanggalBayar.setDate(new Date());
-        view.textJumlahBayar.setText(selectedSiswa.getSPP().getNominal() + "");
+        view.textJumlahBayar.setText(selectedSiswa.getSPP() != null ? selectedSiswa.getSPP().getNominal() + "" : "");
 
         view.mainTabPane.setSelectedIndex(2);
     }
@@ -102,7 +102,7 @@ public class AdminController {
             Object[] row = new Object[6];
 
             row[0] = String.format("%06d", pembayaran.getIdPembayaran());
-            row[1] = pembayaran.getPetugas().getNama();
+            row[1] = pembayaran.getPetugas() != null ? pembayaran.getPetugas().getNama() : "-";
             row[2] = pembayaran.getTglBayar();
             row[3] = pembayaran.getBulanBayar();
             row[4] = pembayaran.getTahunBayar();
@@ -123,12 +123,12 @@ public class AdminController {
             Object[] row = new Object[8];
 
             row[0] = String.format("%06d", pembayaran.getIdPembayaran());
-            row[1] = pembayaran.getPetugas().getNama();
-            row[2] = pembayaran.getSiswa().getNama();
+            row[1] = pembayaran.getPetugas() != null ? pembayaran.getPetugas().getNama() : "-";
+            row[2] = pembayaran.getSiswa() != null ?  pembayaran.getSiswa().getNama() : "-";
             row[3] = pembayaran.getTglBayar();
             row[4] = pembayaran.getBulanBayar();
             row[5] = pembayaran.getTahunBayar();
-            row[6] = pembayaran.getSPP().getTahun();
+            row[6] = pembayaran.getSPP() != null ? pembayaran.getSPP().getTahun() : "-";
             row[7] = pembayaran.getJumlahBayar();
 
             tableModel.addRow(row);
@@ -222,13 +222,13 @@ public class AdminController {
             row[0] = siswa.getNisn();
             row[1] = siswa.getNis();
             row[2] = siswa.getNama();
-            row[3] = siswa.getKelas().getNamaKelas();
+            row[3] = siswa.getKelas() != null ? siswa.getKelas().getNamaKelas() : "-";
             row[4] = siswa.getAlamat();
             row[5] = siswa.getNoTelp();
 
             SPP spp = siswa.getSPP();
 
-            row[6] = spp.getTahun();
+            row[6] =  spp != null ? spp.getTahun() : "-";
 
             tableModel.addRow(row);
         });
@@ -247,19 +247,19 @@ public class AdminController {
 
         view.textSearchSiswaNISN.setText(selectedSiswa.getNisn());
 
-        view.labelUserNISN.setText(selectedSiswa.getNisn());
+         view.labelUserNISN.setText(selectedSiswa.getNisn());
         view.labelUserNIS.setText(selectedSiswa.getNis());
         view.labelUserNama.setText(selectedSiswa.getNama());
-        view.labelUserKelas.setText(selectedSiswa.getKelas().getNamaKelas());
+        view.labelUserKelas.setText(selectedSiswa.getKelas() != null ? selectedSiswa.getKelas().getNamaKelas() : "-");
         view.labelUserAlamat.setText(selectedSiswa.getAlamat());
         view.labelUserTelepone.setText(selectedSiswa.getNoTelp());
-        view.labelUserSPP.setText(selectedSiswa.getSPP().getNominal() + "");
+        view.labelUserSPP.setText(selectedSiswa.getSPP() != null ? selectedSiswa.getSPP().getNominal() + "" : "-");
 
         this.populateTabelSiswa(view);
 
         view.labelNameNISNEntri.setText(selectedSiswa.getNama() + " - " + selectedSiswa.getNisn());
         view.dateTanggalBayar.setDate(new Date());
-        view.textJumlahBayar.setText(selectedSiswa.getSPP().getNominal() + "");
+        view.textJumlahBayar.setText(selectedSiswa.getSPP() != null ? selectedSiswa.getSPP().getNominal() + "" : "");
 
         view.mainTabPane.setSelectedIndex(2);
     }
@@ -292,8 +292,6 @@ public class AdminController {
             JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("laporanPembayaran.jrxml"));
 
             JasperPrint jp = JasperFillManager.fillReport(jasperReport, params, DB.connection());
-
-//                        JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("laporanPembayaran.jrxml"), params, DB.connection());
             JasperViewer.viewReport(jp, false);
         } catch (JRException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);

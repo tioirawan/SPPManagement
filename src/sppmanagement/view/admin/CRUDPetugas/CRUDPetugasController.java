@@ -102,6 +102,12 @@ public class CRUDPetugasController {
             return;
         }
         
+        int response = JOptionPane.showConfirmDialog(null, "Menghapus petugas akan mempengaruhi data pembayaran! apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.WARNING_MESSAGE);
+
+        if (response != JOptionPane.OK_OPTION) {
+            return;
+        }
+        
         int petugasId = Integer.parseInt(view.getTextID().getText());
         
         dao.find(petugasId).delete();

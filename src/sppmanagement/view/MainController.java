@@ -56,7 +56,7 @@ public class MainController {
         row[0] = siswa.getNisn();
         row[1] = siswa.getNis();
         row[2] = siswa.getNama();
-        row[3] = siswa.getKelas().getNamaKelas();
+        row[3] = siswa.getKelas() != null ? siswa.getKelas().getNamaKelas() : "-";
         row[4] = siswa.getAlamat();
         row[5] = siswa.getNoTelp();
 
@@ -86,7 +86,7 @@ public class MainController {
             row[0] = pembayaran.getTglBayar();
             row[1] = pembayaran.getBulanBayar();
             row[2] = pembayaran.getTahunBayar();
-            row[3] = pembayaran.getPetugas().getNama();
+            row[3] = pembayaran.getPetugas() != null ? pembayaran.getPetugas().getNama() : "-";
             row[4] = pembayaran.getJumlahBayar();
 
             tableModel.addRow(row);

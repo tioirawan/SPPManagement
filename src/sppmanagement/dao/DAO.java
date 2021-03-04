@@ -227,4 +227,13 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void deleteWhere(String where) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM " + table + " WHERE " + where);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

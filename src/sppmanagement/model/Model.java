@@ -7,7 +7,6 @@ package sppmanagement.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import sppmanagement.dao.PetugasDAO;
 
 /**
  *

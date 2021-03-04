@@ -109,7 +109,7 @@ public class Siswa implements Model {
 
     @Override
     public void delete() {
-        if (this.nisn.equals("")) {
+        if (!this.nisn.equals("")) {
             new SiswaDAO().delete(this);
         }
     }

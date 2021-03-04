@@ -76,6 +76,12 @@ public class CRUDKelasController {
 
             return;
         }
+        
+        int response = JOptionPane.showConfirmDialog(null, "Menghapus kelas akan mempengaruhi data siswa! apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.WARNING_MESSAGE);
+
+        if (response != JOptionPane.OK_OPTION) {
+            return;
+        }
 
         int id = Integer.parseInt(view.getTextID().getText());
 

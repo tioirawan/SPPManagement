@@ -46,4 +46,8 @@ public class KelasDAO extends DAO {
 
         super.update(data, kelas.getIdKelas());
     }
+    
+       public void delete(Kelas kelas) {
+        super.delete(String.valueOf(kelas.getIdKelas()));;
+    }
 }

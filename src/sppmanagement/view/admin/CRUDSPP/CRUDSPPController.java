@@ -89,6 +89,12 @@ public class CRUDSPPController {
 
             return;
         }
+        
+        int response = JOptionPane.showConfirmDialog(null, "Menghapus SPP akan mempengaruhi data siswa! apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.WARNING_MESSAGE);
+
+        if (response != JOptionPane.OK_OPTION) {
+            return;
+        }
 
         spp.delete();
 

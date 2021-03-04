@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT p.id_pembayaran, pt.nama_petugas, sw.nisn, sw.nama, k.nama_kelas, p.tgl_bayar, p.bulan_dibayar, p.tahun_dibayar, s.tahun, s.nominal, p.jumlah_bayar FROM `pembayaran` as p INNER JOIN petugas as pt ON p.id_petugas = pt.id_petugas INNER JOIN siswa as sw ON p.nisn = sw.nisn INNER JOIN kelas as k ON sw.id_kelas = k.id_kelas INNER JOIN spp as s ON p.id_spp = s.id_spp WHERE s.tahun = $P{tahun_spp} ORDER BY p.tgl_bayar DESC, p.id_pembayaran DESC]]>
+		<![CDATA[SELECT p.id_pembayaran, pt.nama_petugas, sw.nisn, sw.nama, k.nama_kelas, p.tgl_bayar, p.bulan_dibayar, p.tahun_dibayar, s.tahun, s.nominal, p.jumlah_bayar FROM `pembayaran` as p LEFT JOIN petugas as pt ON p.id_petugas = pt.id_petugas LEFT JOIN siswa as sw ON p.nisn = sw.nisn LEFT JOIN kelas as k ON sw.id_kelas = k.id_kelas LEFT JOIN spp as s ON p.id_spp = s.id_spp GROUp BY p.id_pembayaran ORDER BY p.tgl_bayar DESC, p.id_pembayaran DESC]]>
 	</queryString>
 	<field name="id_pembayaran" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -202,33 +202,33 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jumlah_bayar}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 				<reportElement uuid="6e3993c1-26e7-4da9-bc55-bd21304065d6" x="52" y="0" width="86" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nisn}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nisn} != null ? $F{nisn} : "[DELETED]"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 				<reportElement uuid="4d53a089-1c1e-45a3-9654-44b69d4a0ba4" x="138" y="0" width="130" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama} != null ? $F{nama} : "[DELETED]"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 				<reportElement uuid="43bd76ff-6308-4712-93f2-76e66a57b476" x="392" y="0" width="64" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nama_petugas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama_petugas} != null ? $F{nama_petugas} : "[DELETED]"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 				<reportElement uuid="2b82273c-881c-4c63-87b7-2c0f9a209ad4" x="268" y="0" width="66" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nama_kelas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama_kelas} != null ? $F{nama_kelas} : "[DELETED]"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="9b9165d5-9c01-4384-b388-64da9abbc43a" x="334" y="0" width="58" height="20"/>

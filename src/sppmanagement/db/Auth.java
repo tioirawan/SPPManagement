@@ -17,18 +17,6 @@ public class Auth {
     static Petugas user;
 
     public static Petugas getUser() {
-        // for debugging
-//        Petugas admin = new Petugas();
-//
-//        admin.setId(999);
-//        admin.setLevel("admin");
-//        admin.setNama("Admin Testing");
-//        admin.setUsername("admin");
-//        admin.setPassword("admin123");
-//
-//        return admin;
-        // end debugging
-
         return user;
     }
 
@@ -37,18 +25,6 @@ public class Auth {
     }
 
     public static Petugas check() {
-        // for debugging
-//        Petugas admin = new Petugas();
-//
-//        admin.setId(999);
-//        admin.setLevel("admin");
-//        admin.setNama("Admin Testing");
-//        admin.setUsername("admin");
-//        admin.setPassword("admin123");
-//
-//        return admin;
-        // end debugging
-
         if (user == null) {
             JOptionPane.showMessageDialog(null, "Session ended, please reopen the program and login!");
 

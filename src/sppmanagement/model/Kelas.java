@@ -9,12 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import sppmanagement.dao.KelasDAO;
 
-/**
- *
- * @author ASTANEW2
- */
 public class Kelas implements Model {
-
     private int idKelas;
     private String namaKelas;
     private String kompetensiKeahlian;
@@ -65,5 +60,4 @@ public class Kelas implements Model {
         setNamaKelas(result.getString("nama_kelas"));
         setKompetensiKeahlian(result.getString("kompetensi_keahlian"));
     }
-
 }

@@ -66,13 +66,13 @@ public class CRUDSiswaController {
             row[0] = siswa.getNisn();
             row[1] = siswa.getNis();
             row[2] = siswa.getNama();
-            row[3] = siswa.getKelas().getNamaKelas();
+            row[3] = siswa.getKelas() != null ? siswa.getKelas().getNamaKelas() : "-";
             row[4] = siswa.getAlamat();
             row[5] = siswa.getNoTelp();
 
             SPP spp = siswa.getSPP();
 
-            row[6] = spp.getTahun() + " - " + spp.getNominal();
+            row[6] = spp != null ? spp.getTahun() : "-";
 
             tableModel.addRow(row);
         });
@@ -102,12 +102,12 @@ public class CRUDSiswaController {
             System.out.println("Create new siswa");
             siswa = new Siswa();
         } else {
-            if(isEdit == false) {
+            if (isEdit == false) {
                 JOptionPane.showMessageDialog(null, "Siswa dengan NISN tersebut sudah terdaftar!");
-                
+
                 return;
             }
-            
+
             System.out.println("Update existing siswa");
             siswa = dao.find(nisn);
         }
@@ -171,6 +171,12 @@ public class CRUDSiswaController {
             return;
         }
 
+        int response = JOptionPane.showConfirmDialog(null, "Menghapus siswa akan mempengaruhi data pembayaran! apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.WARNING_MESSAGE);
+
+        if (response != JOptionPane.OK_OPTION) {
+            return;
+        }
+
         dao.find(view.getTextNISN().getText()).delete();
 
         this.reset(view);
@@ -190,11 +196,11 @@ public class CRUDSiswaController {
         view.getTextAlamat().setText(siswa.getAlamat());
         view.getTextNoTelp().setText(siswa.getNoTelp());
 
-        view.getSelectKelas().setSelectedItem(siswa.getKelas().getNamaKelas());
-        
+        view.getSelectKelas().setSelectedItem(siswa.getKelas() != null ? siswa.getKelas().getNamaKelas() : "");
+
         SPP sppSiswa = siswa.getSPP();
-        
-        view.getSelectSPP().setSelectedItem(sppSiswa.getTahun());
+
+        view.getSelectSPP().setSelectedItem(sppSiswa != null ? sppSiswa.getTahun() : "");
 
         view.getTextNISN().setEnabled(false);
         isEdit = true;
